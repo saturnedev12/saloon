@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:saloon/features/explore/widgets/action_profile_button.dart';
+import 'package:saloon/features/explore/widgets/profile_category.dart';
 
+import '../../chat/widgets/chat_queue.dart';
 import '../../shared_widgets/service_card.dart';
 
 class ProfileArtist extends StatefulWidget {
@@ -22,12 +24,15 @@ class _ProfileArtistState extends State<ProfileArtist> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: const Text(
-              'Meddex BarberShop',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 23,
+            title: const Padding(
+              padding: EdgeInsets.only(left: 90),
+              child: Text(
+                'Loic Medeleine',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 23,
+                ),
               ),
             ),
             toolbarHeight: 100,
@@ -45,45 +50,58 @@ class _ProfileArtistState extends State<ProfileArtist> {
                 Navigator.pop(context);
               },
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                height: 280,
-                width: double.infinity,
-                padding: EdgeInsets.all(10),
-                foregroundDecoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 39, 38, 38),
-                      Colors.transparent,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0, 1.5],
-                  ),
-                ),
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          'https://media.istockphoto.com/photos/retro-styled-barbershop-picture-id638568556?k=20&m=638568556&s=612x612&w=0&h=PHw_NRat3bFWRwsnn1MNMDLwUjFkHiIGqHXhu2vyxAI=')),
-                ),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Icon(
-                    Icons.favorite,
-                    color: Colors.white,
-                    shadows: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+            flexibleSpace: Stack(
+              children: [
+                FlexibleSpaceBar(
+                  background: Container(
+                    height: 280,
+                    width: double.infinity,
+                    padding: EdgeInsets.all(10),
+                    foregroundDecoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 39, 38, 38),
+                          Colors.transparent,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0, 1.5],
                       ),
-                    ],
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                              'https://res.cloudinary.com/planity/image/upload/t_d_main,f_auto/i8j6rqukamss1olfl6wq')),
+                    ),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                        shadows: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const Positioned(
+                  bottom: 10,
+                  left: 50,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://static01.nyt.com/images/2021/01/28/fashion/27SKIN-HAIR-5/27SKIN-HAIR-5-articleLarge.jpg?quality=75&auto=webp&disable=upscale'),
+                    radius: 40,
+                  ),
+                ),
+              ],
             ),
           ),
           SliverPadding(
@@ -122,7 +140,12 @@ class _ProfileArtistState extends State<ProfileArtist> {
                     title: 'LOCATION',
                     icon: CupertinoIcons.location_fill),
                 ActionProfileButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true)
+                          .push(CupertinoPageRoute(
+                        builder: (context) => ChatQueue(),
+                      ));
+                    },
                     title: 'CHAT',
                     icon: CupertinoIcons.chat_bubble_2_fill)
               ],
@@ -135,62 +158,27 @@ class _ProfileArtistState extends State<ProfileArtist> {
             ),
           ),
           SliverToBoxAdapter(
-            child: SizedBox(
-              width: double.infinity,
-              child: ListTile(
-                title: Text('STAFFERS'),
-                subtitle: Container(
-                  //color: Colors.amber,
-                  height: 130,
-                  child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                      //color: Colors.red,
-                      padding: EdgeInsets.only(right: 10, left: 5),
-                      width: 100,
-                      height: 80,
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.grey[300],
-                            backgroundImage: const NetworkImage(
-                                'https://cdn.pixabay.com/photo/2021/04/05/12/39/man-6153298_1280.jpg'),
-                          ),
-                          const SizedBox(
-                            height: 3,
-                          ),
-                          const Text(
-                            'John Fred',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+            child: Row(
+              children: const [
+                SizedBox(
+                  width: 110,
+                  child: ListTile(
+                    title: Text('SERVICES'),
                   ),
                 ),
-              ),
+                Expanded(
+                    child: CupertinoTextField(
+                  textInputAction: TextInputAction.search,
+                  prefix: Icon(CupertinoIcons.search),
+                  placeholder: 'search service',
+                )),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
             ),
           ),
-          const SliverToBoxAdapter(
-            child: Divider(
-              endIndent: 10,
-              indent: 10,
-            ),
-          ),
-          const SliverToBoxAdapter(child: ListTile(title: Text('SERVICES'))),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return ServiceCarde();
-              },
-              childCount: 4,
-            ),
-          ),
+          ProfileCategory(),
         ],
       ),
     );

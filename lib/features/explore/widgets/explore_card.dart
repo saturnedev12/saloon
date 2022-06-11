@@ -11,19 +11,19 @@ class ExploreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(
-          context,
-          rootNavigator: true,
-        ).push(CupertinoPageRoute(
-          builder: (context) => const ProfileArtist(),
-        ));
-      },
-      child: Column(
-        children: [
-          artiste
-              ? Container(
+    return Column(
+      children: [
+        artiste
+            ? InkWell(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                    rootNavigator: true,
+                  ).push(CupertinoPageRoute(
+                    builder: (context) => const ProfileArtist(),
+                  ));
+                },
+                child: Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),
@@ -99,89 +99,89 @@ class ExploreCard extends StatelessWidget {
                       )
                     ],
                   ),
-                )
-              : InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => ProlfileSaloon(),
-                        ));
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(children: [
-                          Container(
-                            height: 200,
-                            decoration: const BoxDecoration(
-                                color: Colors.grey,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    'https://mir-s3-cdn-cf.behance.net/project_modules/disp/efd50f5624398.56023917c48cf.jpg',
-                                  ),
-                                  fit: BoxFit.cover,
-                                )),
-                          ),
-                          SizedBox(
-                              height: 100,
-                              child: ListView.builder(
-                                cacheExtent: 100,
-                                itemExtent: 110,
-                                itemCount: 4,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) => Container(
-                                  margin:
-                                      const EdgeInsets.only(right: 5, top: 5),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.grey,
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                          'https://i.pinimg.com/736x/ae/67/7a/ae677a18891ad058e1526f2b087028b6.jpg',
-                                        ),
-                                        fit: BoxFit.cover),
-                                  ),
+                ),
+              )
+            : InkWell(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                    rootNavigator: true,
+                  ).push(CupertinoPageRoute(
+                    builder: (context) => const ProlfileSaloon(),
+                  ));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(children: [
+                        Container(
+                          height: 200,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  'https://mir-s3-cdn-cf.behance.net/project_modules/disp/efd50f5624398.56023917c48cf.jpg',
                                 ),
+                                fit: BoxFit.cover,
                               )),
-                        ]),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      const Text(
-                        'Smart PLus Glam',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
                         ),
+                        SizedBox(
+                            height: 100,
+                            child: ListView.builder(
+                              cacheExtent: 100,
+                              itemExtent: 110,
+                              itemCount: 4,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) => Container(
+                                margin: const EdgeInsets.only(right: 5, top: 5),
+                                decoration: const BoxDecoration(
+                                  color: Colors.grey,
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        'https://i.pinimg.com/736x/ae/67/7a/ae677a18891ad058e1526f2b087028b6.jpg',
+                                      ),
+                                      fit: BoxFit.cover),
+                                ),
+                              ),
+                            )),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Text(
+                      'Smart PLus Glam',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
                       ),
-                      Row(
-                        children: const [
-                          Icon(
-                            CupertinoIcons.location_fill,
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          CupertinoIcons.location_fill,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          'Calle Mata,8 , 28500, Agranda del rey',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
-                          Text(
-                            'Calle Mata,8 , 28500, Agranda del rey',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-          const Divider(),
-        ],
-      ),
+              ),
+        const Divider(),
+      ],
     );
   }
 }

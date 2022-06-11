@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:saloon/features/chat/widgets/chat_queue.dart';
 import 'package:saloon/features/explore/widgets/action_profile_button.dart';
+import 'package:saloon/features/explore/widgets/profile_category.dart';
 
 import '../../shared_widgets/service_card.dart';
 
@@ -122,7 +124,12 @@ class _ProlfileSaloonState extends State<ProlfileSaloon> {
                     title: 'LOCATION',
                     icon: CupertinoIcons.location_fill),
                 ActionProfileButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true)
+                          .push(CupertinoPageRoute(
+                        builder: (context) => ChatQueue(),
+                      ));
+                    },
                     title: 'CHAT',
                     icon: CupertinoIcons.chat_bubble_2_fill)
               ],
@@ -182,15 +189,28 @@ class _ProlfileSaloonState extends State<ProlfileSaloon> {
               indent: 10,
             ),
           ),
-          const SliverToBoxAdapter(child: ListTile(title: Text('SERVICES'))),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return ServiceCarde();
-              },
-              childCount: 4,
+          SliverToBoxAdapter(
+            child: Row(
+              children: const [
+                SizedBox(
+                  width: 110,
+                  child: ListTile(
+                    title: Text('SERVICES'),
+                  ),
+                ),
+                Expanded(
+                    child: CupertinoTextField(
+                  textInputAction: TextInputAction.search,
+                  prefix: Icon(CupertinoIcons.search),
+                  placeholder: 'search service',
+                )),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
             ),
           ),
+          ProfileCategory(),
         ],
       ),
     );
