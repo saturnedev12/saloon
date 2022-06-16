@@ -50,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
                     height: 20,
                     child: CupertinoTextField(
                       textInputAction: TextInputAction.search,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(5),

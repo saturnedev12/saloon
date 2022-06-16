@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import '../../shared_widgets/service_card.dart';
 
 class ProfileCategory extends StatelessWidget {
@@ -61,15 +57,15 @@ class ProfileCategory extends StatelessWidget {
                 children: <Widget>[
                   ListView.builder(
                     itemCount: 7,
-                    itemBuilder: (context, index) => ServiceCarde(),
+                    itemBuilder: (context, index) => const ServiceCarde(),
                   ),
-                  Center(
+                  const Center(
                     child: Text("Page History"),
                   ),
-                  Center(
+                  const Center(
                     child: Text("Page History"),
                   ),
-                  Center(
+                  const Center(
                     child: Text("Page History"),
                   ),
                 ],

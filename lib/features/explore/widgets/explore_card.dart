@@ -11,177 +11,184 @@ class ExploreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        artiste
-            ? InkWell(
-                onTap: () {
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).push(CupertinoPageRoute(
-                    builder: (context) => const ProfileArtist(),
-                  ));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5)),
-                  padding: EdgeInsets.only(left: 5),
-                  height: 240,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Greg Maswen',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
-                              ),
-                              const Text(
-                                  '''The Bedford Head Shoppe has offered premium
-                                  services at an 
-                                  affordable price since 2008.
-                                  '''),
-                              Row(
+    return SliverPadding(
+      padding: EdgeInsets.all(5),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          children: [
+            artiste
+                ? InkWell(
+                    onTap: () {
+                      Navigator.of(
+                        context,
+                        rootNavigator: true,
+                      ).push(CupertinoPageRoute(
+                        builder: (context) => const ProfileArtist(),
+                      ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5)),
+                      padding: EdgeInsets.only(left: 5),
+                      height: 240,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Container(
+                              child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      for (int i = 0; i < 3; i++)
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
-                                        ),
-                                    ],
+                                  const Text(
+                                    'Greg Maswen',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                    ),
                                   ),
+                                  const Text(
+                                      '''The Bedford Head Shoppe has offered premium
+                                      services at an 
+                                      affordable price since 2008.
+                                      '''),
                                   Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.favorite,
-                                        color: Colors.red,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          for (int i = 0; i < 3; i++)
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                        ],
                                       ),
-                                      Text('300')
+                                      Row(
+                                        children: const [
+                                          Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                          ),
+                                          Text('300')
+                                        ],
+                                      )
                                     ],
                                   )
                                 ],
-                              )
-                            ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: ShaderMask(
-                          shaderCallback: (rect) {
-                            return const LinearGradient(
-                              begin: Alignment.center,
-                              end: Alignment.centerLeft,
-                              colors: [Colors.black, Colors.transparent],
-                            ).createShader(
-                                Rect.fromLTRB(0, 0, rect.width, rect.height));
-                          },
-                          blendMode: BlendMode.dstIn,
-                          child: Image.network(
-                            'https://www.alsa-co.fr/wp-content/uploads/2017/12/cheveux-long-homme-hommes-longs-459x600.jpg',
-                            height: 400,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              )
-            : InkWell(
-                onTap: () {
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).push(CupertinoPageRoute(
-                    builder: (context) => const ProlfileSaloon(),
-                  ));
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(children: [
-                        Container(
-                          height: 200,
-                          decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  'https://mir-s3-cdn-cf.behance.net/project_modules/disp/efd50f5624398.56023917c48cf.jpg',
-                                ),
+                          Expanded(
+                            flex: 3,
+                            child: ShaderMask(
+                              shaderCallback: (rect) {
+                                return const LinearGradient(
+                                  begin: Alignment.center,
+                                  end: Alignment.centerLeft,
+                                  colors: [Colors.black, Colors.transparent],
+                                ).createShader(Rect.fromLTRB(
+                                    0, 0, rect.width, rect.height));
+                              },
+                              blendMode: BlendMode.dstIn,
+                              child: Image.network(
+                                'https://www.alsa-co.fr/wp-content/uploads/2017/12/cheveux-long-homme-hommes-longs-459x600.jpg',
+                                height: 400,
                                 fit: BoxFit.cover,
-                              )),
-                        ),
-                        SizedBox(
-                            height: 100,
-                            child: ListView.builder(
-                              cacheExtent: 100,
-                              itemExtent: 110,
-                              itemCount: 4,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) => Container(
-                                margin: const EdgeInsets.only(right: 5, top: 5),
-                                decoration: const BoxDecoration(
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : InkWell(
+                    onTap: () {
+                      Navigator.of(
+                        context,
+                        rootNavigator: true,
+                      ).push(CupertinoPageRoute(
+                        builder: (context) => const ProlfileSaloon(),
+                      ));
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(children: [
+                            Container(
+                              height: 200,
+                              decoration: const BoxDecoration(
                                   color: Colors.grey,
                                   image: DecorationImage(
-                                      image: NetworkImage(
-                                        'https://i.pinimg.com/736x/ae/67/7a/ae677a18891ad058e1526f2b087028b6.jpg',
-                                      ),
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                            )),
-                      ]),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Text(
-                      'Smart PLus Glam',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                    Row(
-                      children: const [
-                        Icon(
-                          CupertinoIcons.location_fill,
-                          color: Colors.grey,
+                                    image: NetworkImage(
+                                      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/efd50f5624398.56023917c48cf.jpg',
+                                    ),
+                                    fit: BoxFit.cover,
+                                  )),
+                            ),
+                            SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  cacheExtent: 100,
+                                  itemExtent: 110,
+                                  itemCount: 4,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) => Container(
+                                    margin:
+                                        const EdgeInsets.only(right: 5, top: 5),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            'https://i.pinimg.com/736x/ae/67/7a/ae677a18891ad058e1526f2b087028b6.jpg',
+                                          ),
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                )),
+                          ]),
                         ),
-                        Text(
-                          'Calle Mata,8 , 28500, Agranda del rey',
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          'Smart PLus Glam',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey,
+                            fontSize: 19,
                           ),
+                        ),
+                        Row(
+                          children: const [
+                            Icon(
+                              CupertinoIcons.location_fill,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              'Calle Mata,8 , 28500, Agranda del rey',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-        const Divider(),
-      ],
+                  ),
+            const Divider(),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:saloon/features/app/app.dart';
+//import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 
-void main() {
+void main() async {
+  //await FlutterStatusbarcolor.setStatusBarColor(Colors.red);
   runApp(const MyApp());
 }
 
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme(
           primary: Color.fromARGB(246, 33, 33, 36), //rgb(20,28,36)
           secondary: Colors.amber,
-          surface: Colors.purpleAccent,
+          surface: Colors.white,
           background: Colors.blue,
           error: Colors.blue,
           onPrimary: Color.fromARGB(255, 210, 210, 203),
